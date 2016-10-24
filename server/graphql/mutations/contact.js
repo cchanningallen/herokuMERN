@@ -8,7 +8,6 @@ import { contactInputType, contactType } from '../types/contact.js';
 import ContactModel from '../../models/contact';
 
 const addContact = {
-  type: GraphQLID,
   args: {
     data: {
       name: 'data',
@@ -16,20 +15,19 @@ const addContact = {
     }
   },
   async resolve (root, params, options) {
-    console.log("hmm")
     const contactModel = new ContactModel(params.data);
     const newContact = await contactModel.save();
 
     if (!newContact) {
       throw new Error('Error adding new contact');
     }
-    
+
     return newContact._id;
-  }
+  },
+  type: GraphQLID
 };
 
 const removeContact = {
-  type: contactType,
   args: {
     _id: {
       name: '_id',
@@ -44,7 +42,8 @@ const removeContact = {
     }
 
     return removedContact;
-  }
+  },
+  type: contactType
 };
 
 export default {

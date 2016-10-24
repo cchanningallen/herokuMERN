@@ -9,7 +9,6 @@ import { contactType } from '../types/contact';
 import ContactModel from '../../models/contact';
 
 const contact = {
-  type: contactType,
   args: {
     id: {
       name: 'id',
@@ -18,15 +17,16 @@ const contact = {
   },
   resolve (root, params, options) {
     return ContactModel.findById(params.id);
-  }
+  },
+  type: contactType
 };
 
 const contacts = {
-  type: new GraphQLList(contactType),
   args: {},
   resolve (root, params, options) {
     return ContactModel.find();
-  }
+  },
+  type: new GraphQLList(contactType)
 };
 
 export default {

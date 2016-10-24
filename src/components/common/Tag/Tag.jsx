@@ -1,6 +1,6 @@
 import './Tag.scss';
 
-import React, {PropTypes, Component} from 'react';
+import React, { PropTypes, Component } from 'react';
 import cx from 'classnames';
 import { COLORS } from 'theme/constants';
 
@@ -13,14 +13,16 @@ class Tag extends Component {
     color: COLORS[0]
   };
 
-  render() {
-    const { color, children } = this.props;
+  cx() {
+    const { color, className } = this.props;
 
-    return (
-      <small className={cx('Tag', {[`Tag--${color}`]: color})}>
-        {children}
-      </small>
-    );
+    return cx(className, 'Tag', {
+      [`Tag--${color}`]: color
+    })
+  }
+
+  render() {
+    return <small className={this.cx()}>{this.props.children}</small>;
   }
 }
 
