@@ -3,7 +3,7 @@ var getConfig     = require('hjs-webpack');
 var path          = require('path');
 
 var config = getConfig({
-  in: 'src/app.jsx',
+  in: 'src/app.js',
   out: 'public',
   clearBeforeBuild: true,
   // Use devServer.proxy to specify proxies

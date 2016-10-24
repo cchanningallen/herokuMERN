@@ -1,8 +1,8 @@
 import './ContactCard.scss';
 
-import React, {PropTypes, Component} from 'react';
+import React, {PropTypes, PureComponent} from 'react';
 
-class ContactCard extends Component {
+class ContactCard extends PureComponent {
   static propTypes = {
     firstName: PropTypes.string,
     lastName: PropTypes.string,
@@ -12,7 +12,7 @@ class ContactCard extends Component {
   };
 
   handleDelete = () => {
-    this.props.onDelete(this.props._id);
+    this.props.onDelete(this.props.idx);
   };
 
   render() {

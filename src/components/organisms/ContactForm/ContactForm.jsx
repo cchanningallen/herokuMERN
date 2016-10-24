@@ -1,8 +1,8 @@
 import './ContactForm.scss';
 
-import React, {PropTypes, Component} from 'react';
+import React, {PropTypes, PureComponent} from 'react';
 
-class ContactForm extends Component {
+class ContactForm extends PureComponent {
   static propTypes = {
     onCreate: PropTypes.func.isRequired
   };
