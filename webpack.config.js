@@ -9,7 +9,7 @@ var config = getConfig({
   // Use devServer.proxy to specify proxies
   devServer: {
     proxy: {
-      context: "/api",
+      context: "/graphql",
       options: {
         target: "http://localhost:8080"
       }

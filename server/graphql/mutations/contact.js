@@ -22,9 +22,9 @@ const addContact = {
       throw new Error('Error adding new contact');
     }
 
-    return newContact._id;
+    return newContact;
   },
-  type: GraphQLID
+  type: contactType
 };
 
 const removeContact = {

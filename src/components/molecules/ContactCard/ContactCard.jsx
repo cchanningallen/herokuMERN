@@ -12,7 +12,7 @@ class ContactCard extends PureComponent {
   };
 
   handleDelete = () => {
-    this.props.onDelete(this.props.idx);
+    this.props.onDelete(this.props._id);
   };
 
   render() {

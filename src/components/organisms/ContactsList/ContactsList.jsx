@@ -3,21 +3,22 @@ import './ContactsList.scss';
 import React, {PropTypes, PureComponent} from 'react';
 import { List } from 'immutable';
 import ContactCard from 'components/molecules/ContactCard';
-
+import cxHelpers from 'lib/decorators/classNameHelpers';
+let i = 0;
+@cxHelpers
 class ContactsList extends PureComponent {
   static propTypes = {
-    isLoading: PropTypes.bool,
-    removeContact: PropTypes.func.isRequired,
-    contacts: PropTypes.instanceOf(List).isRequired
+    loading: PropTypes.bool.isRequired,
+    deleteContact: PropTypes.func.isRequired,
+    contacts: PropTypes.array
   };
 
   contactsList(contacts, onDelete) {
-    if (contacts.size > 0) {
+    if (contacts && contacts.length > 0) {
       return(
-        <div className="Home__contacts-list">
+        <div className={this.cxEl('contacts-list')}>
           {contacts.map((props, key) => {
-            console.log(props, key);
-            return <ContactCard idx={key} {...props} {...{key, onDelete}} />
+            return <ContactCard {...props} {...{key, onDelete}} />
           })}
         </div>
       )
@@ -27,12 +28,13 @@ class ContactsList extends PureComponent {
   }
 
   render() {
-    const { isLoading, contacts, removeContact } = this.props;
+    console.log(`ContactsList rendered ${i++} times`);
+    console.log('ContactsList props:', { ...this.props });
+    const { loading, contacts, deleteContact } = this.props;
 
     return (
-      <div className="ContactsList">
-        {isLoading ? 'Loading...' : null}
-        {contacts ? this.contactsList(contacts, removeContact) : null}
+      <div className={this.cx()}>
+        {loading ? 'Loading...' : this.contactsList(contacts, deleteContact)}
       </div>
     );
   }
