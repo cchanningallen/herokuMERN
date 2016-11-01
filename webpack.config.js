@@ -21,4 +21,14 @@ config.resolve.extensions = ['', '.js', '.jsx'];
 config.resolve.root = [path.resolve(__dirname, 'src')];
 config.sassLoader = { includePaths: [path.resolve(__dirname, 'src', 'theme')] };
 
+switch(process.env.npm_lifecycle_event) {
+  case 'build': {
+    config.devtool = 'cheap-module-source-map';
+  }
+
+  default: {
+    config.devtool = 'source-map';
+  }
+}
+
 module.exports = config;
